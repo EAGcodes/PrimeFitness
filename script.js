@@ -163,6 +163,19 @@
     });
   }
 
+  /* ---------- FAQ accordion ---------- */
+  const faqQuestions = document.querySelectorAll('.faq-question');
+  faqQuestions.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      // Close any other open items for a clean single-open accordion
+      faqQuestions.forEach((other) => {
+        if (other !== btn) other.setAttribute('aria-expanded', 'false');
+      });
+      btn.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
+
   /* ---------- Footer year ---------- */
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
